@@ -30,16 +30,17 @@ input[type=text] {
 </head>
 <body bgcolor=black text=red>
 
-	<form action="forget.do" method="get">
+	<form action="forget.do">
 		<marquee>
 			<h1>ForgetPage</h1>
 		</marquee>
 		<font>${Invalid}</font>
+	<br><br>
 		<label for="userId">User ID: <input type="text" id="userId"
 			name="userId" required> <br>
 		<br> As Security Question:<br>
 		<br> <label for="email">Enter your Email ID: <input
-				type="password" id="email" name="email" required><br>
+				type="email" id="email" name="email" required><br>
 			<br> <input type="submit" value="Submit"><br>
 	</form>
 

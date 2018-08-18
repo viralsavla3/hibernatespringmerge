@@ -11,23 +11,23 @@ import bean.LoginBean;
 import entity.User;
 import repo.UserRepo;
 
-@Service
+@Service // identifies the service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserRepo repo;// repo inject
+	private UserRepo repo;// repo inject using autowired
 
 	@Override
 	public User authenticate(LoginBean login) {
-		
+
 		Encoder encoder = Base64.getEncoder();
 		String encoded = encoder.encodeToString(login.getpassword().getBytes());
 		login.setpassword(encoded);
-		return repo.authenticate(login);
+		return repo.authenticate(login); // encoding password
 	}
 
 	@Override
 	public boolean validate(ForgetBean forget) {
-		//Email is already encoded
+		// Email is not encoded
 		return repo.validate(forget);
 	}
 
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 		String encoded = encoder.encodeToString(change.getpassword().getBytes());
 		change.setpassword(encoded);
 
-		return repo.changePassword(change);
+		return repo.changePassword(change); // encoding password
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		Encoder encoder = Base64.getEncoder();
 		String encoded = encoder.encodeToString(user.getPassword().getBytes());
 		user.setPassword(encoded);
-		return repo.persist(user);
+		return repo.persist(user); // encoding password
 	}
 
 }

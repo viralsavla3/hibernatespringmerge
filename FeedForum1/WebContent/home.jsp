@@ -30,11 +30,8 @@ input[type=text] {
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
+<jsp:include page="banner.jsp"/>
 <body bgcolor=black text=red>
-
-<% if(request.getParameter("invalid")!=null){ %>
-<font size="3" color="Red">Invalid Email ID / Password</font>
-<%} %>
 <form action="login.do" method="get">
 		<marquee>
 			<h1>LOGIN PAGE</h1>

@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -31,12 +32,31 @@ public class Feed {
 	private String query;
 	@Temporal(TemporalType.TIMESTAMP) // date or time or timestamp which needs to be specified
 	private Date feedDate;
-	@OneToMany(mappedBy = "feed", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "feed", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Comment> comments;// OneToMany
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user; // ManytoOne
+
+	@Formula("(select count(*) from comments c where c.feedId=feedId)")
+	private int totalCmnts;
+	
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public int getTotalCmnts() {
+		return totalCmnts;
+	}
+
+	public void setTotalCmnts(int totalCmnts) {
+		this.totalCmnts = totalCmnts;
+	}
 
 	public int getFeedId() {
 		return feedId;

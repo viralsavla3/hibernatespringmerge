@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="banner.jsp"/>
-<h1>My Dashboard</h1>
-User Id:${User.userId}<br>
-Email: ${User.email}<br>
-Total Feeds: ${User.totalFeeds}<br>
-<a href="query.jsp">Ask Question</a>
 
 </body>
 </html>

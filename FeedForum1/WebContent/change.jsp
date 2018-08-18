@@ -5,33 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script>
-var password = document.getElementById("password")
-, confirm_password = document.getElementById("confirm_password");
 
-function validatePassword(){
-if(password.value != confirm_password.value) {
-  confirm_password.setCustomValidity("Passwords Don't Match");
-} else {
-	window.alert("Password successfully reset");
-  //confirm_password.setCustomValidity("home.jsp");
-}
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-</script>
 </head>
 <h1> Change Password</h1>
 <body bgcolor=black text=red>
 
 <form action="change.do" method="get">
-<font>${Id}</font>
-User Id: <input type="text" id="UserId" name="UserId" required><br>
 <font>${Invalid}</font>
 New Password:<input type="password" id="password" placeholder="Password" name="password" required><br>
-Re-enter New Password:<input type="password" placeholder="Confirm Password" id="confirm_password" name="password" required><br>
-<input type="submit" id="submit" name="submit" value="Confirm" onclick="validatePassword()">
+
+<input	type="submit" class="floatright" value="Submit" /><br class="clear" />
 </form>
 <br><br>
 </body>

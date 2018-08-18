@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -29,6 +30,26 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade =CascadeType.ALL , fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Feed> feeds;// OneToMany
+
+	@Formula("(select count(*) from feeds1 f where f.userId=userId)")
+	private int totalFeeds;
+	
+	
+	public Set<Feed> getFeeds() {
+		return feeds;
+	}
+
+	public void setFeeds(Set<Feed> feeds) {
+		this.feeds = feeds;
+	}
+
+	public int getTotalFeeds() {
+		return totalFeeds;
+	}
+
+	public void setTotalFeeds(int totalFeeds) {
+		this.totalFeeds = totalFeeds;
+	}
 
 	public String getPassword() {
 		return password;

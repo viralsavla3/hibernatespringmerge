@@ -12,7 +12,7 @@ import bean.LoginBean;
 import entity.User;
 import sun.print.resources.serviceui;
 
-@Repository
+@Repository // identifies the repository
 public class UserRepoImpl implements UserRepo {
 	@Autowired
 	private SessionFactory sessionfactory; // repo is used to communicate with databse
@@ -21,8 +21,11 @@ public class UserRepoImpl implements UserRepo {
 	public User authenticate(LoginBean login) {
 		Session session = sessionfactory.openSession();
 		User user = (User) session.get(User.class, login.getUserId());
-		session.save(login);
-		if (user != null && user.getPassword().equals(login.getpassword()))
+		// fetches the userid of current session for login & passes to session which is
+		// typecasted
+		// to user obj
+		if (user != null && (user.getPassword().equals(login.getpassword()))) // compared the current session password
+																				// with the DB password
 			return user;
 		else
 			return null;
@@ -31,8 +34,12 @@ public class UserRepoImpl implements UserRepo {
 	@Override
 	public boolean validate(ForgetBean forget) {
 		Session session = sessionfactory.openSession();
-		User user = (User) session.get(User.class, forget.getEmail());
-		if (user != null && user.getEmail().equals(forget.getEmail()))
+		User user = (User) session.get(User.class, forget.getUserId());
+		// fetches the userid of current session for forget &
+		// passes to session which is typecasted
+		// to user obj
+		if (user != null && user.getEmail().equals(forget.getEmail())) // compared the current sessions email with the
+																		// DB email
 			return true;
 		else
 			return false;
@@ -44,12 +51,15 @@ public class UserRepoImpl implements UserRepo {
 		Transaction txn = session.beginTransaction();
 		try {
 			User user = (User) session.get(User.class, change.getUserId());
-			user.setPassword(change.getpassword());
+			// fetches the userid of current session for change &
+			// passes to session which is typecasted
+			// to user obj
+			user.setPassword(change.getpassword()); // gets the new password from the current session and sets it
 			txn.commit();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			txn.rollback();
+			txn.rollback(); // if any exception occurred then it is rolled-back
 			return false;
 		}
 	}
@@ -59,11 +69,11 @@ public class UserRepoImpl implements UserRepo {
 		Session session = sessionfactory.openSession();
 		Transaction txn = session.beginTransaction();
 		try {
-			session.save(user);
-			txn.commit();
+			session.save(user); // saves the users session
+			txn.commit(); // commits the user session
 			return true;
 		} catch (Exception e) {
-			txn.rollback();
+			txn.rollback(); // if any exception occurred then it is rolled-back
 			e.printStackTrace();
 			return false;
 		}
