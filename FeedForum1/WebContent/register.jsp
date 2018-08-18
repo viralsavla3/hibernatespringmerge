@@ -36,11 +36,12 @@ input[type=text] {
 <body bgcolor=black text=red>
 
 
-	<form action="UserController.hola" method="get">
+	<form action="register.do" method="get">
 	
 	
 <h1>Register</h1>
-<label for="userid">User Id: <input type="text" name="userid"	id="name" required><br> <br>
+<font>${Invalid}</font>
+<label for="userId">User Id: <input type="text" name="userId"	id="UserId" required><br> <br>
 <label for="email"> Email id: <input type="text" id="email"	name="email" required><br> <br>
 <label for="password"> Password:<input type="password" id="password" name="password" required><br><br>
  

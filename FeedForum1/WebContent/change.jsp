@@ -25,8 +25,10 @@ confirm_password.onkeyup = validatePassword;
 <h1> Change Password</h1>
 <body bgcolor=black text=red>
 
-<form action="UserController.hola" method="get">
-Email: <input type="text" id="email" name="email" required><br>
+<form action="change.do" method="get">
+<font>${Id}</font>
+User Id: <input type="text" id="UserId" name="UserId" required><br>
+<font>${Invalid}</font>
 New Password:<input type="password" id="password" placeholder="Password" name="password" required><br>
 Re-enter New Password:<input type="password" placeholder="Confirm Password" id="confirm_password" name="password" required><br>
 <input type="submit" id="submit" name="submit" value="Confirm" onclick="validatePassword()">

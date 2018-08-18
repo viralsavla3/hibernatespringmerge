@@ -25,7 +25,7 @@ public class Comment {
 	@Id
 	@GeneratedValue(generator="sc")
 	private int commentId;
-	private String comment;
+	private String response;
 	@Temporal(TemporalType.TIMESTAMP) // date or time or timestamp which needs to be specified
 	private Date commentDate;
 	@ManyToOne
@@ -43,12 +43,12 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getResponse() {
+		return response;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setResponse(String response) {
+		this.response = response;
 	}
 
 	public Date getCommentDate() {

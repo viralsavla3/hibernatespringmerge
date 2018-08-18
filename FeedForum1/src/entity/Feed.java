@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,23 +22,22 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "feeds")
-@SequenceGenerator(name="sf",sequenceName="seq_feed")
+@Table(name = "feeds1")
+@SequenceGenerator(name = "sf", sequenceName = "seq_feed")
 public class Feed {
 	@Id
-	@GeneratedValue(generator="sf") //sequence is used to generate automatic value
+	@GeneratedValue(generator = "sf") // sequence is used to generate automatic value
 	private int feedId;
-	private String question;
+	private String query;
 	@Temporal(TemporalType.TIMESTAMP) // date or time or timestamp which needs to be specified
 	private Date feedDate;
-	@OneToMany(mappedBy = "feed", cascade =  CascadeType.ALL)
+	@OneToMany(mappedBy = "feed", cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Comment> comments;// OneToMany
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user; // ManytoOne
 
-	
 	public int getFeedId() {
 		return feedId;
 	}
@@ -48,12 +46,12 @@ public class Feed {
 		this.feedId = feedId;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getQuery() {
+		return query;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQuery(String query) {
+		this.query = query;
 	}
 
 	public Date getFeedDate() {

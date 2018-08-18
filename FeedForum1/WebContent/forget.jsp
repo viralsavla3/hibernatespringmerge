@@ -29,17 +29,14 @@ input[type=text] {
 <title>Insert title here</title>
 </head>
 <body bgcolor=black text=red>
-<% if(request.getParameter("invalid")!=null){ %>
-<font size="3" color="Red">Invalid Email ID / Movie</font>
-<%} %>
 
-	<form action="UserController.hola" method="get">
+	<form action="forget.do" method="get">
 		<marquee>
 			<h1>ForgetPage</h1>
 		</marquee>
-		<label for="userid">User ID: <input type="text" id="userid"
-			name="userid"
-			required> <br>
+		<font>${Invalid}</font>
+		<label for="userId">User ID: <input type="text" id="userId"
+			name="userId" required> <br>
 		<br> As Security Question:<br>
 		<br> <label for="email">Enter your Email ID: <input
 				type="password" id="email" name="email" required><br>

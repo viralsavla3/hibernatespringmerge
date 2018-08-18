@@ -35,13 +35,16 @@ input[type=text] {
 <% if(request.getParameter("invalid")!=null){ %>
 <font size="3" color="Red">Invalid Email ID / Password</font>
 <%} %>
-<form action="UserController.hola" method="get">
+<form action="login.do" method="get">
 		<marquee>
 			<h1>LOGIN PAGE</h1>
 		</marquee>
+		<font>${Prompt}</font>
 		<h1>HomePage</h1>
-		<label for="email">Email id: <input type="email" id="email"
-			name="email" required> 
+		<label for="UserId">User id: <input type="text" id="UserId"
+			name="UserId" required> 
+		<!-- <label for="email">Email id: <input type="email" id="email"
+			name="email" required>  -->
 			<label for="password">Password: <input
 				type="password" id="password" name="password" 
 				required><br>
