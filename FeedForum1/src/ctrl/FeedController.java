@@ -52,12 +52,12 @@ public class FeedController {
 	}
 
 	@RequestMapping("comment.do")
-	public String submitComment(@RequestParam("response")String response, HttpSession session) {
+	public String submitComment(@RequestParam("response") String response, HttpSession session) {
 		Comment comment = new Comment();
 		comment.setResponse(response);
-		comment.setFeed((Feed)session.getAttribute("Question"));
-		comment.setUser((User)session.getAttribute("User"));
-		
+		comment.setFeed((Feed) session.getAttribute("Question"));
+		comment.setUser((User) session.getAttribute("User"));
+
 		Feed feed = service.submitComment(comment);
 		session.setAttribute("Question", feed);
 		return "response";
