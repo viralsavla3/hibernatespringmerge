@@ -13,17 +13,25 @@
 	<%
 		User user = (User) session.getAttribute("User");
 		if (user != null) {
+			
 	%>
-	<span> Hello <%=user.getUserId()%> |  </span>
-	<span><a href="dashboard.jsp">Home</a> | <a href="feeds.do"> Feeds </a> |<a href="logout.do">Logout</a></span>
+	<span> Hello <%=user.getUserId()%> |
+	</span>
+	<span><a href="dashboard.jsp">Home</a> | <a href="feeds.do">
+			Feeds </a> |<a href="logout.do">Logout</a></span>
 
 	<%
 		} else {
 	%>
-	<span>Hello There</span>
+		<span>Hello There | <a href="home.jsp">Home</a> </span>
 	<%
 		}
 	%>
+	<span style="text-align: right">
+		<form action="search.do">
+			<input name="keyword"><input type="submit" value="Search">
+		</form>
+	</span>
 	<hr size="3" color="midnightblue">
 </body>
 </html>

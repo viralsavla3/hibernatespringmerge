@@ -15,7 +15,7 @@ label {
 
 input[type=text] {
 	float: left;
-	width: 250px;
+	width: 450px;
 }
 
 .clear {

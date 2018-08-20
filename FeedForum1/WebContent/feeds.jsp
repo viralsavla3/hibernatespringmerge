@@ -14,7 +14,7 @@
 		</tr>
 		<c:forEach items="${Feeds}" var="feed">
 		<tr>
-			<td><a href="question.do?id=${ feed.feedId}">${ feed.query}</a></td>
+			<td><a href="question.do?id=${ feed.feedId}">${ feed.query}</a></td><!-- passes feedid to showQuestion method in controller -->
 			<td>${ feed.feedDate }</td>
 		 	<td>${ feed.totalCmnts}</td>	 		
 		</tr>

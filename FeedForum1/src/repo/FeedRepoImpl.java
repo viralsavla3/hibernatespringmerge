@@ -36,7 +36,13 @@ public class FeedRepoImpl implements FeedRepo {
 
 	@Override
 	public List<Feed> searchFeeds(String keyword) {
-		return null;
+		String[] keywords = keyword.split(" ");
+		Session session = factory.openSession();
+		String hql = "from Feed where lower(query) like '% " + keywords[0].toLowerCase() + "%'";
+		for (int i = 1; i < keywords.length; i++)
+			hql += "or lower(query) like '%" + keywords[i].toLowerCase() + "%'";
+		Query query = session.createQuery(hql);
+		return query.list();
 	}
 
 	@Override
@@ -46,7 +52,7 @@ public class FeedRepoImpl implements FeedRepo {
 		Transaction txn = session.beginTransaction();
 		session.save(comment);
 		txn.commit();
-		
+
 		return comment.getFeed();
 	}
 

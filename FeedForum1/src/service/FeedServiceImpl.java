@@ -30,8 +30,7 @@ public class FeedServiceImpl implements FeedService {
 
 	@Override
 	public List<Feed> searchFeeds(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.searchFeeds(keyword);
 	}
 
 	@Override

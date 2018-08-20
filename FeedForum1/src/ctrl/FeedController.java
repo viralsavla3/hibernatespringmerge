@@ -21,14 +21,15 @@ public class FeedController {
 	@Autowired
 	private FeedService service;
 
-	@RequestMapping(value = "query.do", method = { RequestMethod.POST })
+	@RequestMapping(value = "query.do", method = { RequestMethod.POST }) // more characters cannot be sent with get
+																			// method
 	public String askQuestion(@RequestParam("query") String query, HttpSession session, Map model) {
 		Feed feed = new Feed();
 		feed.setQuery(query);
-		//
+		// feed belongs to user and set the feed to it
 		User user = (User) session.getAttribute("User");
 		feed.setUser(user);
-		//
+		// going to ask question in service
 		service.askQuestion(feed);
 
 		model.put("Feeds", service.getMyFeed(user.getUserId()));
@@ -51,7 +52,7 @@ public class FeedController {
 
 	}
 
-	@RequestMapping("comment.do")
+	@RequestMapping(value = "comment.do", method = RequestMethod.POST)
 	public String submitComment(@RequestParam("response") String response, HttpSession session) {
 		Comment comment = new Comment();
 		comment.setResponse(response);
@@ -61,5 +62,11 @@ public class FeedController {
 		Feed feed = service.submitComment(comment);
 		session.setAttribute("Question", feed);
 		return "response";
+	}
+
+	@RequestMapping("search.do")
+	public String searchFeed(@RequestParam("keyword") String keyword, Map model) {
+		model.put("Feeds", service.searchFeeds(keyword));
+		return "feeds";
 	}
 }

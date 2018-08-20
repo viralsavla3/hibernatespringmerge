@@ -20,7 +20,7 @@ public class UserController {
 
 	@RequestMapping("login.do")
 	public String checkLogin(LoginBean login, Map model, HttpSession session) {
-		// On login successful we return user obj, we have to keep inside a session
+		// On login successful we return user object, we have to keep inside a session
 		User user = service.authenticate(login);
 		if (user != null) { // Check whether user object is null
 			session.setAttribute("User", user); // sets the attributes of user object to match the login
